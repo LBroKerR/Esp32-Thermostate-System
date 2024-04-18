@@ -3,7 +3,6 @@
  Created:	3/3/2024 6:53:19 PM
  Author:	rabai
 */
-#include <Arduino.h>
 #include "OBJ.h"
 #include <DHT.h>
 #include <TFT_eSPI.h>
