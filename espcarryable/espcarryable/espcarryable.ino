@@ -51,7 +51,13 @@ void SendChangedData(Data*data, stawifi* wifi)
 }
 bool Init(stawifi wifi, int param, Data*data)
 {
-    while(!wifi.requestInit(param));
+    while(!wifi.requestInit(param))
+    {
+      if(!wifi.IsConnected())
+      {
+        while(!wifi.connectToServer());
+      }
+    }
     Serial.println(wifi.getReceivedID());
     return data->setData(wifi.getReceivedData(),wifi.getReceivedID());
 }

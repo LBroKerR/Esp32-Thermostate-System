@@ -26,12 +26,12 @@
 
 // tmp sensor type, and pin
 #define DHTTYPE DHT21
-#define DHTPIN 27
+#define DHTPIN 25
 
 //buttons data pins 
 #define PLUSPIN 32
 #define MINUSPIN 33
-#define PROGPIN 25
+#define PROGPIN 14
 //wanted tmp setting 
 #define STEP 0.1
 
