@@ -12,6 +12,9 @@
 #include "SD.h"
 #include "sdhandler.h"
 #define SWITCHPIN 22
+#define AUTOMODE 1
+#define GASMODE 2
+#define OFFMODE 3
 #define DHTTYPE DHT11
 #define DHTPIN 27
 
@@ -416,7 +419,43 @@ void mesureSensor(DHT *sensor, Data* data1)
   data1->setHmd(sensor->readHumidity());
   data1->setTmp(sensor->readTemperature());
 }
-
+void switch_To_mode(unsigned number)
+{
+  // on->  switch  1->0 autoheater
+  //               1->0->1->0 gasheater
+  // off-> switch  1->0->1->0->1->0 off
+  for(unsigned i=0; i<number; i++)
+  {
+    digitalWrite(SWITCHPIN, HIGH);
+    delay(100);
+    digitalWrite(SWITCHPIN, LOW);
+  }
+}
+void switching_modes(bool option)// on-> switch 1->0 off-> 1->0->1->0->1->0
+{
+    if(option)
+    {
+      switch_To_mode(AUTOMODE);
+    }
+    else
+    {
+      switch_To_mode(GASMODE);
+    }
+}
+void heater(Data* data) //on-> switch 1->0->1->0 off-> 1->0->1->0->1->0
+{
+  if( data->getSwitched())
+  {
+    if(data->getHeatSwitch())// trun on
+    {
+      switching_modes(data->getHeaterOption());
+    }
+    else //turn off
+    {
+      switch_To_mode(OFFMODE);
+    }
+  }
+}
 void Core1TaskFunction(void *parameter) 
 {
   OBJ* obj=(OBJ*)parameter;
@@ -492,14 +531,7 @@ void Core1TaskFunction(void *parameter)
     #else
       while(1);
     #endif
-    if(obj->getData()->getHeatSwitch())
-    {
-      digitalWrite(SWITCHPIN, HIGH);
-    }
-    else
-    {
-      digitalWrite(SWITCHPIN, LOW);
-    }
+    heater(obj->getData());
   }
 }
 // the loop function runs over and over again until power down or reset
