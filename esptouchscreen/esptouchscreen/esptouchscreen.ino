@@ -168,6 +168,10 @@ void CarryableDataCheck(OBJ*obj)
       obj->getData()->setData(obj->getWifi()->getReceivedData(),obj->getWifi()->getReceivedID());
     }
   }
+  else
+  {
+    obj->getWifi()->setReceived(false);
+  }
 }
 
 void  sendChangedDatas(OBJ*obj)
@@ -205,10 +209,6 @@ void Core0TaskFunction(void *parameter)
     {
       CarryableDataCheck(obj);
       sendChangedDatas(obj);
-    }
-    else
-    {
-      obj->getWifi()->setReceived(false);
     }
     delay(5);
   }

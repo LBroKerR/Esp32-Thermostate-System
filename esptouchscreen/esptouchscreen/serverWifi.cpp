@@ -93,16 +93,16 @@ bool serverWifi::getReceived()
 }
 bool serverWifi::CliensDisconnect(int param)
 {
-  //if(param==0 && second!=0)
-  //{
-   // second=param;
-  //}
+  if(param==0)
+  {
+   second=param;
+  }
   if(!getReceived())
   {
-    if(param-second>=10)
+    if(param-second>=30)
     {
       second=param;
-      client.stop();
+      //client.stop();
       return true;
     }
   }
@@ -160,6 +160,10 @@ bool serverWifi::receiving()
 bool serverWifi::sending(float data, int id)
 {
     bool output = false;
+    if(data<0)
+    {
+      data=100-data;
+    }
     float info = data + (float)(CODE * id);
     int i = 0, n = 0;
     sendData(info);

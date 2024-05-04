@@ -22,7 +22,7 @@ class Data
   bool heat_option;//false means to use autoheating/ true means to use gasheater
   unsigned current_progHour;
 	bool Heat_switch, switched, prevHeat_switch;// to do heatswitch_changed?
-  bool wifiwtmp, wtmp,sdoffset, wifiprognumber, progHour_tmp_changed,prognumber,  ShouldSendWtmp;
+  bool wifiwtmp, wtmp,sdoffset, wifiprognumber, progHour_tmp_changed,prognumber, ShouldSendWtmp;
   unsigned hourinit, minuteinit; 
 
 public:
