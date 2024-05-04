@@ -23,7 +23,7 @@ Data::Data()
   switched=false;
   wtmp=false;
   prognumber=false;
-  WhyNeedThis=false;
+   ShouldSendWtmp=false;
 }
 void Data::setOffset(float param)
 {
@@ -348,9 +348,9 @@ bool  Data::getWifiprognumber()
 
 bool Data::Shouldwtmpsending()
 {
-  return WhyNeedThis;
+  return ShouldSendWtmp;
 }
 void Data::setHaveToSendWtmp(bool param)
 {
- WhyNeedThis=param;
+ ShouldSendWtmp=param;
 }
