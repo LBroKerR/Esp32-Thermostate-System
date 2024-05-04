@@ -150,6 +150,10 @@ bool stawifi::receiving()
 bool stawifi::sending(float data, int id)
 {
   int i=0, n=0;
+  if(data<0)
+  {
+    data=100-data;
+  }
   sendData(data+(float)(CODE*id));
   delay(1000);
   while(true)
