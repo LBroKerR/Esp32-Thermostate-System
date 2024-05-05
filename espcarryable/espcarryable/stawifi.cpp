@@ -2,7 +2,7 @@
 stawifi::stawifi()
 {
   SSID="Esp32router";
-  PW="Kakukk32";
+  PW="password";
   HOST= "192.168.0.102";//102
   port=8888;
   ID=0.0;
