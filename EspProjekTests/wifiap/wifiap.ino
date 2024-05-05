@@ -3,7 +3,7 @@
 #define CODE 1000 //code id + msg in one float, 
 #define DECODE 1000 // decode msg, get id and data from one float number
 const char *SSID="Esp32router";
-const char *PW="Kakukk32";
+const char *PW="password";
 const char *HOST= "192.168.0.102";//102
 uint16_t port=8888;
 WiFiServer server(port);
